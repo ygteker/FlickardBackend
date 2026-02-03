@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS packs;
+
+CREATE TABLE packs (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    premium BOOLEAN NOT NULL DEFAULT FALSE,
+    price_cents BIGINT NOT NULL DEFAULT 0,
+    created_at TIMESTAMP NOT NULL DEFAULT now()
+);
+
+CREATE TABLE cards (
+    id BIGSERIAL PRIMARY KEY,
+    front TEXT NOT NULL,
+    back TEXT NOT NULL,
+    pack_id BIGINT NOT NULL REFERENCES packs(id) ON DELETE CASCADE
+);
+
+CREATE INDEX idx_cards_pack_id ON cards(pack_id)
