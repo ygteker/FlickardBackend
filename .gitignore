@@ -41,3 +41,6 @@ out/
 
 ### docker-compose -- remove after .env ###
  docker-compose.yaml
+/postgresql_docker.sh
+application-local.properties
+application-prod.properties
